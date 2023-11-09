@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import { Form,Modal,Button } from 'react-bootstrap'
-import { uploadSeriesDetails,getAllSeries } from '../services/allAPI';
+import { uploadSeriesDetails,getAllSeries, deleteASeries } from '../services/allAPI';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -8,6 +8,7 @@ function MyList() {
   const [AllSeries, setAllSeries] = useState([])
   const [uploadSeriesServerResponse, setUploadSeriesServerResponse] = useState({})
   const [selectedCategory, setSelectedCategory] = useState("")
+  const [deleteSeriesStatus, setDeleteSeriesStatus] = useState(false)
   const [series, setSeries] = useState({
     name:"",genre:"",category:"",language:"",imageUrl:""
   })
@@ -47,12 +48,20 @@ function MyList() {
   }
   useEffect(()=>{
   getAllUploadedSeries()
-  },[uploadSeriesServerResponse])
+  },[uploadSeriesServerResponse,deleteSeriesStatus])
 
   const handleCategoryChange = (category) =>{
     setSelectedCategory(category);
     setSeries({...series,category})
   }
+
+  const removeSeries = async(name)=>{
+    // make api call
+    const response = await deleteASeries(name)
+    console.log(response);
+    setDeleteSeriesStatus(true)
+  }
+
   return (
     <>
     <h1 className='container  mt-5'>START BY ADDING SERIES DETAILS HERE!</h1>
@@ -155,7 +164,7 @@ function MyList() {
                   <td>{item?.name}</td>
                   <td>{item?.language}</td>
                   <td>{item?.category}</td>
-                  <td></td>
+                  <td> <button onClick={()=>removeSeries(item?.name)} className='btn'><i className='fa-solid fa-trash text-danger'></i></button></td>
                 </tr>
                  )):
                  <p>NO ENTRY YET!</p>
