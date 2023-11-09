@@ -19,7 +19,7 @@ function Home() {
        </Col>
      </Row>
 <div className='container border border-black rounded p-4'>
-  <h2 style={{textAlign:'center',color:'green', fontWeight:'bold'}}>Start your<button onClick={()=>navigatebyUrl('/mylist')} className='btn fs-2 fw-bold'> myBinge </button>today and embark on a journey of storytelling, emotion, and connection. Happy watching! 🍿📺✨</h2>
+  <h2 style={{textAlign:'center',color:'green', fontWeight:'bold'}}>Start your<button onClick={()=>navigatebyUrl('/mylist')} className='btn fs-2 fw-bold'>myBinge</button>today and embark on a journey of storytelling, emotion, and connection. Happy watching! 🍿📺✨</h2>
   </div>
      <div className='container mt-5 p-3'>
       <h2 className='fs-1 fw-bold mt-5'>What We Offer: </h2>
