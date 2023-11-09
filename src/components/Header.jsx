@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom'
 
 function Header() {
   return (
-    <Navbar className="bg-dark">
+    <Navbar className="bg-primary  fs-5">
     <Container>
       <Navbar.Brand href="/">
-        <Link to={'/'} className='fs-4' style={{textDecoration:'none',color:'white'}}><i class="fa-solid fa-compact-disc fa-spin fa-lg"></i>{" "}
+        <Link to={'/'} className='fs-2' style={{textDecoration:'none',color:'white'}}><i class="fa-solid fa-compact-disc fa-spin fa-lg"></i>{" "}
              myBinge
         </Link>
       </Navbar.Brand>
