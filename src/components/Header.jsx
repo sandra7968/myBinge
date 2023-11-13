@@ -7,7 +7,7 @@ function Header() {
     <Navbar className="bg-primary  fs-5">
     <Container>
       <Navbar.Brand href="/">
-        <Link to={'/'} className='fs-2' style={{textDecoration:'none',color:'white'}}><i class="fa-solid fa-compact-disc fa-spin fa-lg"></i>{" "}
+        <Link to={'/'} className='fs-2' style={{textDecoration:'none',color:'white'}}><i className="fa-solid fa-compact-disc fa-spin fa-lg"></i>{" "}
              myBinge
         </Link>
       </Navbar.Brand>
