@@ -49,7 +49,7 @@ body,html{
 .mycard:hover .mycard-content p{
     display: block;
     margin:150px 30px 10px 30px;
-    text-align: justify;
+    text-align: center;
     padding: 10px;
 }
 .p2 .mycard{
@@ -70,4 +70,16 @@ body,html{
 .p2 .mycard:hover .mycard-img{
     top:-100px;
     scale: 0.75;
+}
+.mycard .mycard-content p span{
+    display: flex;
+    font-size: 20px;
+    width: 270px;
+    justify-content: center;
+    align-items: center;
+   
+}
+button>i{
+    margin-left: 10px;
+    font-size: 25px;
 }
