@@ -29,7 +29,7 @@ export const addToAlreadyWatched = async (videoDetails)=>{
 }
 // get all already watched to json server
 export const getAllAlreadyWatched = async ()=>{
-    // make get post http request to http://localhost:4000/history to get video history in json server and return response to watch history component
+    // make get post http request to http://localhost:4000/alreadyWatched to get video history in json server and return response to watch history component
   return await commonAPI("GET", `${serverURL}/alreadyWatched`,"")
 }
 // delete a series from json server
@@ -69,4 +69,4 @@ export const deleteWantToWatch = async (id)=>{
 }
 
 export const updateCategory = async (id,body)=>{
-  return await commonAPI("PUT", `${serverURL}/series/${id}`,body)}
+  return await commonAPI("PUT", `${serverURL}/alreadyWatched/${id}`,body)}

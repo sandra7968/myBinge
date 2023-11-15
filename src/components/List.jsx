@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { deleteASeries, getAllSeries } from '../services/allAPI'
 
-function List() {
+function List({uploadSeriesServerResponse}) {
     const [list,setList] = useState([])
     const handleList = async ()=>{
         // make api call
@@ -11,7 +11,7 @@ function List() {
 
     useEffect(()=>{
         handleList()
-    },[])
+    },[uploadSeriesServerResponse])
 
     const handleDeleteList = async (id)=>{
         // make api call

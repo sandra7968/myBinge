@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { deleteCurrentlyWatching, getAllAlreadyWatched, getAllCurrentlyWatching, updateCategory, addToAlreadyWatched } from '../services/allAPI'
+import { deleteCurrentlyWatching,  getAllCurrentlyWatching, addToAlreadyWatched, getAllAlreadyWatched } from '../services/allAPI'
 import './alreadywatched.css'
 function CurrentlyWatching() {
     const [watching, setWatching] = useState([])
@@ -25,22 +25,29 @@ function CurrentlyWatching() {
       }
     }
 
-    const handleUpdate = async(id)=>{
-      try{ 
-       await addToAlreadyWatched(id)
-       const update = watching.filter((series)=>{
-        return series.id !== id;
-        
-       })
-       getAllAlreadyWatched()
-       setWatching(update)
-        
-        
-        
-      }catch(error){
-        console.error("error:",error)
+    const handleUpdate = async (id) => {
+      try {
+        const movetoAW = watching.find((series) => series.id === id);
+  
+        if (movetoAW) {
+          // Update the category to "Already Watched"
+          movetoAW.category = 'Already Watched';
+          movetoAW.id = id-100
+  
+          // Make the API call to add to Already Watched
+          console.log(movetoAW);
+          await addToAlreadyWatched(movetoAW);
+          deleteWatching(id)
+        }
+      } catch (error) {
+        console.error('Error updating series:', error);
+        // Handle errors as needed
       }
-    }
+    };
+    
+    
+    
+    
   return (
     <>
     <h1 className='mt-5 ms-5'>Series you're currently watching!</h1>

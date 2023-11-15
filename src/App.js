@@ -13,11 +13,11 @@ function App() {
     <>
     <Header/>
       <Routes>
-        <Route path= '/' element={<Home/>}/>
-        <Route path= '/mylist' element={<MyList/>}/>
-        <Route path= '/alreadywatched' element={<AlreadyWatched/>}/>
-        <Route path= '/currentlywatching' element={<CurrentlyWatching/>}/>
-        <Route path= '/watchlist' element={<WatchList/>}/>
+          <Route path= '/' element={<Home/>}/>
+          <Route path= '/mylist' element={<MyList/>}/>
+          <Route path= '/alreadywatched' element={<AlreadyWatched/>}/>
+          <Route path= '/currentlywatching' element={<CurrentlyWatching/>}/>
+          <Route path= '/watchlist' element={<WatchList/>}/>
       </Routes>
     <Footer/>
     </>

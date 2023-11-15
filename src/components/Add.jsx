@@ -2,21 +2,23 @@ import React, { useState} from 'react'
 import { Form, Button} from 'react-bootstrap'
 import { addToAlreadyWatched, addToCurrentlyWatching, addToWantToWatch, uploadSeries, updateEntry } from '../services/allAPI';
 import { toast,ToastContainer } from 'react-toastify';
-function Add() {
+function Add({setUploadSeriesServerResponse}) {
    
     const [series,setSeries] = useState({
         id:"",title:"",genre:"",category:"",language:"",imageUrl:""
     })
     console.log(series);
     const handleUpload = async ()=>{
+      
         const {title,genre,category,language,imageUrl} = series
         if(!title || !genre || !category || !language || !imageUrl){
-            toast.warning("Please fill the form completely!")
+            alert("Please fill the form completely!")
         }else{
          // make api call
         const response = await uploadSeries(series)
         console.log(response);
-        toast.success(`'${title}' added successfully!`)
+        setUploadSeriesServerResponse(response.data)
+        alert(`'${title}' added successfully!`)
         if(category == "Already Watched"){
           await addToAlreadyWatched(series)
         }else if(category == "Currently Watching"){
@@ -26,7 +28,6 @@ function Add() {
           const watch = await addToWantToWatch(series)
           console.log(watch);
         }
-        
         }
         
 
@@ -36,9 +37,9 @@ function Add() {
   return (
     
     <>
-        <Form style={{backgroundColor:'#ECBA94'}} className='border border-secondary rounded p-5 w-50  ms-5'>
+        <Form onSubmit={handleUpload} style={{backgroundColor:'#ECBA94'}} className='border border-secondary rounded p-5 w-50  ms-5'>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Control type="text" placeholder="Title of the Series" onChange={(e)=>setSeries({...series,title:e.target.value})}
+        <Form.Control type="text" placeholder="Title of the Series"  onChange={(e)=>setSeries({...series,title:e?.target.value})}
          />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -82,7 +83,7 @@ function Add() {
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control type="text" placeholder="Enter Series Poster Image URL" onChange={(e)=>setSeries({...series,imageUrl:e.target.value})}/>
       </Form.Group>
-      <Button onClick={handleUpload} >Add Entry</Button>
+      <Button type='submit'  >Add Entry</Button>
 
       
       
