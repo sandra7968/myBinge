@@ -1,1 +1,1 @@
-export const serverURL = "https://uneven-unequaled-ragamuffin.glitch.me/"
+export const serverURL = "https://mybinge-json-server.onrender.com"

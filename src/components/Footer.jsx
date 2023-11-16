@@ -17,7 +17,7 @@ function Footer() {
               <Link to={'/'} style={{textDecoration:'none'}}>Home</Link>
               <Link to={'/mylist'} style={{textDecoration:'none'}}>My List</Link>
               <Link to={'/alreadywatched'} style={{textDecoration:'none'}}>Already Watched </Link>
-              <Link to={'/currentlywatched'} style={{textDecoration:'none'}}>Currently Watching </Link>
+              <Link to={'/currentlywatching'} style={{textDecoration:'none'}}>Currently Watching </Link>
               <Link to={'/watchlist'} style={{textDecoration:'none'}}>Watch List </Link>
              </div>
              <div className="guides d-flex flex-column">

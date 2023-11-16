@@ -34,22 +34,22 @@ function List({uploadSeriesServerResponse}) {
             <table className='table mt-5 mb-5 container '>
               <thead>
                 <tr>
-                <th>#</th>
-                <th>Series Title</th>
-                <th>Language</th>
-                <th>Genre</th>
-                <th className=''>Action</th>
+                <th style={{color:'brown'}} className='fs-3'>#</th>
+                <th style={{color:'brown'}} className='fs-3'>Series Title</th>
+                <th style={{color:'brown'}} className='fs-3'>Language</th>
+                <th style={{color:'brown'}} className='fs-3'>Genre</th>
+                <th style={{color:'brown'}} className='fs-3'>Action</th>
                 </tr>
               </thead>
               <tbody>
                 { list?.length>0?
                  list?.map((item,index)=>(
                   <tr  key={index} >
-                  <td className='pt-3'>{index+1}</td>
-                  <td className='pt-3'>{item?.title}</td>
-                  <td className='pt-3'>{item?.language}</td>
-                  <td className='pt-3'>{item?.genre}</td>
-                  <td> <button onClick={()=>handleDeleteList(item?.id)} className='btn'><i className='fa-solid fa-trash  text-danger'></i></button></td>
+                  <td className='pt-3 fs-5'>{index+1}</td>
+                  <td className='pt-3 fs-5'>{item?.title}</td>
+                  <td className='pt-3 fs-5'>{item?.language}</td>
+                  <td className='pt-3 fs-5'>{item?.genre}</td>
+                  <td > <button onClick={()=>handleDeleteList(item?.id)} className='btn fs-4'><i className='fa-solid fa-trash  text-danger'></i></button></td>
                 </tr>
                  )):
                  <p>NO ENTRY YET!</p>
