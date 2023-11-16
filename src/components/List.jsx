@@ -30,26 +30,26 @@ function List({uploadSeriesServerResponse}) {
   return (
     <>
         <div className="entries container mt-5">
-            <h1>Your List: </h1>
-            <table className='table mt-5 mb-5 container'>
+            <h1 className='fw-bold'>Your List : </h1>
+            <table className='table mt-5 mb-5 container '>
               <thead>
                 <tr>
                 <th>#</th>
                 <th>Series Title</th>
                 <th>Language</th>
-                <th>Category</th>
-                <th>Action</th>
+                <th>Genre</th>
+                <th className=''>Action</th>
                 </tr>
               </thead>
               <tbody>
                 { list?.length>0?
                  list?.map((item,index)=>(
-                  <tr key={index}>
-                  <td>{index+1}</td>
-                  <td>{item?.title}</td>
-                  <td>{item?.language}</td>
-                  <td>{item?.category}</td>
-                  <td> <button onClick={()=>handleDeleteList(item?.id)} className='btn'><i className='fa-solid fa-trash text-danger'></i></button></td>
+                  <tr  key={index} >
+                  <td className='pt-3'>{index+1}</td>
+                  <td className='pt-3'>{item?.title}</td>
+                  <td className='pt-3'>{item?.language}</td>
+                  <td className='pt-3'>{item?.genre}</td>
+                  <td> <button onClick={()=>handleDeleteList(item?.id)} className='btn'><i className='fa-solid fa-trash  text-danger'></i></button></td>
                 </tr>
                  )):
                  <p>NO ENTRY YET!</p>

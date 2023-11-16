@@ -5,26 +5,31 @@ import { toast,ToastContainer } from 'react-toastify';
 function Add({setUploadSeriesServerResponse}) {
    
     const [series,setSeries] = useState({
-        id:"",title:"",genre:"",category:"",language:"",imageUrl:""
+        id:"",title:"",genre:"",category:"",language:"",plot:"",imageUrl:""
     })
     console.log(series);
-    const handleUpload = async ()=>{
-      
-        const {title,genre,category,language,imageUrl} = series
-        if(!title || !genre || !category || !language || !imageUrl){
+    const handleUpload = async (e)=>{
+       e.preventDefault()
+        const {id,title,genre,category,language,plot,imageUrl} = series
+        if(!title || !genre || !category || !language || !plot || !imageUrl){
             alert("Please fill the form completely!")
         }else{
          // make api call
+         
         const response = await uploadSeries(series)
         console.log(response);
         setUploadSeriesServerResponse(response.data)
         alert(`'${title}' added successfully!`)
         if(category == "Already Watched"){
+          
+          // setSeries({...series,id:newId})
           await addToAlreadyWatched(series)
         }else if(category == "Currently Watching"){
+          // setSeries({...series,id:newId})
          const test = await addToCurrentlyWatching(series)
          console.log(test);
         }else{
+          // setSeries({...series,id:newId})
           const watch = await addToWantToWatch(series)
           console.log(watch);
         }
@@ -38,6 +43,10 @@ function Add({setUploadSeriesServerResponse}) {
     
     <>
         <Form onSubmit={handleUpload} style={{backgroundColor:'#ECBA94'}} className='border border-secondary rounded p-5 w-50  ms-5'>
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control type="text" placeholder="Series ID"  onChange={(e)=>setSeries({...series,id:e?.target.value})}
+         />
+      </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control type="text" placeholder="Title of the Series"  onChange={(e)=>setSeries({...series,title:e?.target.value})}
          />
@@ -81,9 +90,12 @@ function Add({setUploadSeriesServerResponse}) {
        />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Control type="text" placeholder="Plot" onChange={(e)=>setSeries({...series,plot:e.target.value})}/>
+      </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Control type="text" placeholder="Enter Series Poster Image URL" onChange={(e)=>setSeries({...series,imageUrl:e.target.value})}/>
       </Form.Group>
-      <Button type='submit'  >Add Entry</Button>
+      <Button type='submit'>Add Entry</Button>
 
       
       

@@ -30,6 +30,8 @@ function AlreadyWatched() {
   return (
     <>
     <h1 className='mt-5 ms-5'>Series you've finished watching!</h1>
+    <h6 style={{marginLeft:'50px', fontWeight:'bold', marginTop:'-10px'}}>( Hover for Series Details! )</h6>
+
     <div className="parallax p2">
         {/* <SeriesCard watched = {watched}/> */}
         { watched?.length>0?
@@ -40,9 +42,10 @@ function AlreadyWatched() {
           </div>
           <div className="mycard-content">
               <p>
-                <span>Name : {item.title}</span>
-              <span>Genre : {item.genre}</span>
-              <span>Language : {item.language}</span>
+              <h6>Name :<span> {item.title}</span></h6>
+              <h6>Genre : <span>{item.genre}</span></h6>
+              <h6>Language : <span>{item.language}</span></h6>
+              <h6>Plot :<span> {item.plot}</span></h6>
               <button onClick={()=>deleteWatched(item?.id)} className='btn'><i className='fa-solid fa-trash text-danger'></i></button>
               
               </p>
