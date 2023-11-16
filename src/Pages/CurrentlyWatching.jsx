@@ -38,7 +38,7 @@ function CurrentlyWatching() {
           console.log(movetoAW);
           await addToAlreadyWatched(movetoAW);
           
-          toast.success(`Yay! You finished watching ${movetoAW.title}. Find the details in the already watched category! `)
+          toast.success(`Yay! You finished watching '${movetoAW.title}'. Find the details in the already watched category! `)
           deleteWatching(id)
         }
       } catch (error) {

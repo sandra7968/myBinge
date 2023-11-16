@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { deleteWantToWatch, getAllWantToWatch } from '../services/allAPI'
+import { deleteWantToWatch, getAllWantToWatch, addToCurrentlyWatching } from '../services/allAPI'
 import './alreadywatched.css'
+import { toast, ToastContainer } from 'react-toastify'
+
 function WatchList() {
     const [WatchList,setWatchList] = useState([])
     const handleWatchList = async ()=>{
@@ -24,6 +26,27 @@ function WatchList() {
   }
    }
 
+   const handleUpdate = async (id) => {
+    try {
+      const movetoWC = WatchList.find((series) => series.id === id);
+
+      if (movetoWC) {
+        // Update the category to "Already Watched"
+        movetoWC.category = 'Already Watched';
+
+        // Make the API call to add to Already Watched
+        console.log(movetoWC);
+        await addToCurrentlyWatching(movetoWC);
+        
+        toast.success(`Yay! You started watching '${movetoWC.title}'. Find the details in the currently watching category! `)
+        deleteWatch(id)
+      }
+    } catch (error) {
+      console.error('Error updating series:', error);
+      // Handle errors as needed
+    }
+  };
+
   return (
     <>
     <h1 className='mt-5 ms-5'>Series you've on your watch list!</h1>
@@ -41,8 +64,10 @@ function WatchList() {
                 <h6>Name :<span> {item.title}</span></h6>
               <h6>Genre : <span>{item.genre}</span></h6>
               <h6>Language : <span>{item.language}</span></h6>
-              <h6>Plot :<span> {item.plot}</span></h6>
+              <h6>Plot :<span> {item.plot.slice(0,150)}...</span></h6>
               <button onClick={()=>deleteWatch(item?.id)} className='btn'><i className='fa-solid fa-trash text-danger'></i></button>
+              <button className='btn' onClick={()=>handleUpdate(item?.id)}><i className="fa-solid fa-circle-check text-success"></i></button>
+
               </p>
               
           </div>
@@ -51,6 +76,8 @@ function WatchList() {
          
                 }
     </div>
+    <ToastContainer position='top-center' theme='colored' autoClose={2000}/>
+
     </>
   )
 }

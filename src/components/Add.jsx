@@ -10,7 +10,7 @@ function Add({setUploadSeriesServerResponse}) {
     console.log(series);
     const handleUpload = async (e)=>{
        e.preventDefault()
-        const {id,title,genre,category,language,plot,imageUrl} = series
+        const {title,genre,category,language,plot,imageUrl} = series
         if(!title || !genre || !category || !language || !plot || !imageUrl){
             alert("Please fill the form completely!")
         }else{
@@ -33,6 +33,9 @@ function Add({setUploadSeriesServerResponse}) {
           const watch = await addToWantToWatch(series)
           console.log(watch);
         }
+        setSeries({
+          id:"",title:"",genre:"",category:"",language:"",plot:"",imageUrl:""
+      })
         }
         
 
